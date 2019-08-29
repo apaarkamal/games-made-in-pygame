@@ -49,7 +49,7 @@ myFont = pygame.font.SysFont("Calibri", 55);
 # music section
 pygame.mixer.music.load("jazzinparis.mp3")
 pygame.mixer.music.set_volume(.8)
-pygame.mixer.music.play(-1)
+pygame.mixer.music.play(0)
 
 
 def text_objects(text,font):
@@ -100,7 +100,7 @@ def update_truck_positions(truck_list,score,speed):
 		else:
 			truck_list.pop(idx)
 			score += 1
-	return score
+	return scorelen(truck_starts)
 
 def detect_collision(car_pos,truck_pos):
 	p_x = car_pos[0]
@@ -146,7 +146,6 @@ while not game_over:
 	# screen.fill(WHITE)
 	screen.blit(background,(-3,0))
 	
-
 	drop_trucks(truck_list,truck_starts)
 	score  = update_truck_positions(truck_list,score,speed)
 	speed = (score//10) + 1
@@ -157,7 +156,7 @@ while not game_over:
 	text3 = "Timer:  "+ str(time_now)
 	label1 = myFont.render(text1, 1, WHITE)
 	label2 = myFont.render(text2, 1, WHITE)
-	label3 = myFont.render(text3, 1, WHITE)
+	label3 = myFont.render(text3, 1, WHITE) 
 	screen.blit(label1,(WIDTH-195,HEIGHT-40))
 	screen.blit(label2,(30,HEIGHT-40))
 	screen.blit(label3,(30,5))
@@ -168,7 +167,6 @@ while not game_over:
 
 	display_trucks(truck_starts)
 	display_car(car_pos)
-	# screen.blit(truck_image,(790,0))
 	pygame.display.update()
 	clock.tick(clock_speed)
 
